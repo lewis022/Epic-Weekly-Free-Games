@@ -1,5 +1,7 @@
 import json
 import requests
+import markdown
+import notify
 from datetime import datetime
 
 
@@ -86,3 +88,7 @@ if __name__ == '__main__':
     games = get_free_games()
     generate_json(games, './epic_free_games.json')
     generate_markdown(games, './README.md')
+
+file = open('./README.md','r',encoding='utf-8').read()
+html = markdown.markdown(file)
+notify.send("标题",html)
